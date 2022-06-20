@@ -5,387 +5,63 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Site MySQL com HTML</title>
+    
 </head>
 <body>
-    <h1>if you love me so much, then why had you let me go? 
+  <h1>
+   Tipos de DDL 
+   <h2>
+    - Create database ........; = DDL <br>
+    - Create table .........; = DDL <br>
+    - Alter table ...........; = DDL <br>
+    - Drop table ......; = DDL  - Apaga dados e estrutura <br>
+    - Drop database ......; = DDL <br>
+   </H2>
+  </h1>
 
-        <p>
-        - Create database ........; = DDL
-        - Create table .........; = DDL
-        - Alter table ...........; = DDL
-        - Drop table ......; = DDL  - Apaga dados e estrutura
-        - Drop database ......; = DDL
-        
-        
-        
-        - Insert into .....; = DML
-        - Update .....; = DML
-        - Delete .....; = DML
-        - Truncate ......; = DML - Apaga dados
-        
-        
-        
-        - Select * ......; = DQL
-        - 
-        
-        
-        
-        
-        
-        
-        - Desc .........;
-        - Show tables;
-        - Show databases; 
-        - Show create table ......; = ver comandos de criação de tabela
-        - Show create database ......; = ver comandos de criação de DB
-        
-        
-        
-        - Select * from ........ = seleciona todos os dados de ......... 
-      </p>    
-    </h1>    ============================================================
-        <p>
-        Alteração de estrutura da tabela
-        
-        
-        - Insert into ......... values = Inserir valores
-        (...,........,....);
-        
-        - Alter table ...... 
-        add column profissao varchar(10); = Adicionar coluna
-        
-        - Alter table ...... 
-        drop column profissao; = apagar coluna
-        
-        - Alter table pessoas
-        add column profissao varchar(10) after nome; = adicionar coluna após determinado valor 
-         
-        - Alter table pessoas
-        add column codigo int first; = coluna em primeiro com valor inteiro
-        
-        - Alter table pessoas 
-        add codigo int first; = adicionar coluna sem column 
-        
-        - Alter table pessoas         = Tipos e constrains 
-        modify column profissao varchar(20); = Alterar conteúdo dentro de uma Constrain
-        
-        - Alter table pessoas         = Tipos, constrains e nome da coluna
-        change column profissao prof varchar(20); = alterar nome de uma constrain
-        
-        - Alter table pessoas 
-        rename to cuckold; = renomear uma constrain
-        
-        
-        Create table If no exists /// if exists ........ (
-        nome varchar(30)
-        nascimento date
-        profissao varchar(20)
-        ) default charset = utf8;
-        
-        
-        Create table if not exists Example_1 (
-        1 int 
-        2 varchar(30)
-        3 text
-        4 date
-        5 tinyint
-        primary key (ID)
-        ) default charset = utf8;
-        
-        ============================================================
-        <p>
-        Manipulando Linhas
-        
-        
-        - Update cursos
-        set nome = 'HTML5' 
-        where idcurso = '1'; = Alteração de nome com posição de ID
-        
-        
-        - update tabela_cursos
-        set ano = '2015'
-        where idcurso = '4'
-        limit 1; = ALteração de ano com ID e limite de linhas para 1
-        
-        
-        - update tabela_cursos
-        set ano = '2050', carga = '800'
-        where ano = '2018'; = alterar ano e carga onde o ano fro 2018
-        
-        
-        - update tabela_cursos
-        set ano = '2018', carga = '0'
-        where ano = '2050';
-        limit 1;
-        
-        
-        - delete from tabela_cursos
-        where ano = '2050'
-        limit 1; = deletar ano com limite de ano
-        
-        ============================================================
-        <p>
-        Gerenciando cópias de segunrança
-        
-        - Server  --> Data export // Data import 
-        - Dump --> copia do arquivo do DB
-        
-        ============================================================
-        <p>
-        - Obtendo Dados da Tabelas
-        Select = Grabber
-        
-        - Select * from cursos;
-        order by nome; = DESC/ASC (descrescente)
-        
-        - Select ano, carga, nome from cursos
-        order by ano, nome; 
-        
-        - Select nome, carga, totaulas from cursos
-        where carga > 35 or totaulas < 30;
-        
-        
-        WILd cards
-        Like / NOt like / and / or / = seleção personalizada de dados em linhas
-        
-        - Select * from cursos
-        where nome like  'A%' = começo do nome com a letra
-        
-        - Select * from cursos
-        where nome like  '%A' = final do nome com a letra
-        
-        - Select * from cursos
-        where nome like  '%A%' = começo e final
-        
-        - Select * from cursos
-        where nome like  'A__%' = começo A + 2 caracteres ou números
-        
-        - Select * from cursos
-        where nome like  'ph%p_' = começo PH fim P e um caratere ou número
-        
-        - Select  * from cursos 
-        where nome not like '%A%'; 
-        update cursos set nome = 'PáOO where idcurso = '9';
-        
-        - Select idcurso, nome from cursos
-        where ano in ('2014', '2016');
-        
-        - Select nome, ano from cursos
-        where ano between 2014 and 2016
-        order by ano desc, nome asc;
-        
-        - Select * from cursos
-        where totaulas between '20' and '30'
-        order by nome;
-        
-        - Select nome, descricao from cursos
-        where ano <= '2015'
-        order by nome;
-        
-         
-        Distinguir = pega fatos unicos sem repetição, distintos, diferentes
-        
-        - Distinct
-        
-        - Select distinct carga from cursos;
-        
-        
-        
-        Agrupamento de dados / Group by / Having == select 
-         
-        - Select carga, count(nome) from cursos = Agrupar cargas por horas 
-        group by carga
-        order by cargas;
-        
-        - Select * from cursos where totaulas > 30; = selecionar totaulas>30
-        
-        - Select carga, count(nome) from cursos where totaulas = 30
-        group by carga;
-        
-        - Select ano, count(ano) from cursos
-        group by ano
-        having count(ano) > 3;
-        
-        
-        -------------
-        - Select carga, count(nome) from cursos where totaulas = 30 
-        group by carga;
-        
-        select * from cursos where totaulas = 30;
-        ------------
-        
-        - Select ano, count(*) from cursos
-        group by ano 
-        having count(ano) >= 5
-        order by count(*) desc;
-        
-        - Select ano, count(*) from cursos
-        where totaulas > 30
-        group by ano 
-        having ano > 2013
-        order by count(*) desc;
-        
-        - Select carga, count(*) from cursos
-        where ano > 2015
-        group by carga
-        having count(*) >= 5;
-        
-        --------
-        - Select avg(carga) from cursos;
-        
-        select carga, count(*) from cursos
-        where ano > 2015
-        group by carga having carga > (select avg(carega) from cursos);
-        -------
-        
-        - 
-        
-        
-        
-        
-        Funções de agregação = 
-        
-        - count
-        - sum
-        - max
-        - min
-        - avg
-        
-        
-        - Select avg(totaulas) from cursos; 
-        - Select max(totaulas) from cursos where ano = '2015';
-        - Select max(carga) from cursos;
-        - Select count(*) from cursos;
-        
-        
-        ============================================================
-        <p>
-        Relacionando as tabelas - Modelo relacional
-        
-        - Entidade(gafanhotos) = dados(atributos) --> Tlupas(registros) --> alunos
-        
-        
-        - CPF = Chave prímaria 
-        - Código de barra  = Identificador 
-        
-        
-        INNER JOIN --> relação entre entidades
-        
-        left join -> preferência da esqueda 
-        right join -> preferência direita
-        
-        
-        - Chave primaria --> entidade --> Relação --> Chave estrangeira --> DER
-        
-        
-        - Atributos compativeis --> Varchar = Varchar / INT = INT / Relação 1 para 1
-        - 1 para muitos = Chave estrangeira no muitos sempre
-        - Muitos para muitos nova entidade = 3 entidades desmembrar relação  - Chave estrangeira na nova entidade
-        
-        
-        - Chave estrangeira = Chave primaria de outro lugar criada em outro 'lugar' 
-        
-        
-        - Engine --> mecanismo --> oracle --> caracteristicas de criação de tabela -- > chave estrangeira --> innoDB
-        
-        - Chave Primaria vai sempre para o 1 == Primary key
-        - Chave -> vai do 1(primaria) para o n(foreign) 
-        
-        - Constrains sem modelo relacional podem ser apagadas pois não tem conchave com outra table e afeta a consistência dos dados
-        
-        ACID --> resposta do banco de dados --> transação --> INNODB == EXODB != MYsam
-        
-        - Atomicidade = não pode ser dividida em sub tarefas -- fazer toda tarefa ou não fazer
-        
-        - Consistência = DB tem que continuar consistente dps de uma transação
-        
-        - Isolamento = transações isoladas != 2 usuarios transações ao mesmo tempo
-        
-        - Durabilidade = durar o tempo que for necessario -- até você decidir tornar dinâmico
-        
-        
-        
-        ============================================================
-        <p>
-        CREATE DATABASE CADASTRO
-        DEFAULT CHARACTER SET UTF8 = padrão latino 
-        DEFAULT COLLATE UTF8_GENERAL_CI;
-        
-        
-        ============================================================
-        <p>
-        CRTL + ENTER = RODAR 
-        
-        ============================================================
-        <p>
-        - Varchar(10) if name = 'Zé' take just 2 slots not 10 against Char
-        - Enum = variavel ('F','M')
-        - CONSTRAINS = NOT NULL 
-        - Auto_increameant = Auto 1, 2, 3 de dados
-        - Ano/mês/dia  = 1998-06-29 
-        
-        ============================================================
-        <p>
-        - DDL = Data definition lenguage
-        
-        - DML = Data manipulation lenguage
-        
-        - DQL = Data query lenguage
-        
-        - DCL = Data control lenguage
-        
-        - DTL = Data transfer lenguage
-        
-        <p>
-        ============================================================
-        <p>
-        Chave primaria = (id) -> id
-        Unique = (Unico) -> nome
-        
-        
-        - Fichas = registros = Linhas - Tuplas 
-        - Pastas = tabelas = Colunas - Atributos
-        - Armarios = arquivos = DB
-        
-        
-         III - Banco de dados
-          II - Tabelas 
-           I - Conjuntos de registros 
-             - Campos
-        
-        
-        - Banco de dados --> Gerenciador --> Linguagem de exploração
-        
-        
-        - Collation --> UTF8
-        
-        ============================================================
-        <p>
-        -- Banco de dados
-        CREATE DATABASE `exemplo`;
-        USE `exemplo`;
-        
-        -- Estrutura de tabela para a tabela `usuarios`
-        CREATE TABLE `usuarios` (
-          `id` int(8) unsigned NOT NULL AUTO_INCREMENT,
-          `nomedousuario` varchar(16) NOT NULL,
-          `senha` varchar(16) NOT NULL,
-          PRIMARY KEY (`id`)
-        );
-        
-        -- Dados para a tabela `usuarios`
-        INSERT INTO `usuarios` VALUES (1, 'alice','segredo'),(2, 'bob','segredo');
-        
-        
-        - sciece fitness
-        
-        
-        CREATE TABLE `exemplo`.`amigos` ( `id` INT NOT NULL AUTO_INCREMENT , `nome` VARCHAR(30) NOT NULL , `tel` VARCHAR(11) NULL , PRIMARY KEY (`id `), UNIQUE (`nome`)) ENGINE = InnoDB CHARSET=utf32 COLLATE utf32_general_ci COMMENT = 'Lista de amigos';
-        
-        
-        
-        http://localhost/phpmyadmin/index.php?route=/table/structure&&server=1&db=exemplo&table=amigos
-        
-        </p>
+
+  <h1>
+    Tipos de DML
+    <h2>
+      - Insert into .....; = DML <br>
+      - Update .....; = DML <br>
+      - Delete .....; = DML <br>
+      - Truncate ......; = DML - Apaga dados <br>
+    </h2>
+  </h1>
+
+
+  <h1>
+    Tipos de DQL
+    <h2>
+      - Select * from = DQL <br>
+      - Select * .... = DQL <br>
+    </h2>
+  </h1>
+
+  
+  <h1>
+    Outros Comandos
+    <h2>
+- Desc .........; <br>
+- Show tables; <br>
+- Show databases; <br>
+- Show create table ......; = ver comandos de criação de tabela <br>
+- Show create database ......; = ver comandos de criação de DB <br>
+    </h2>
+  </h1>
+
+  
+
+
+
+
+
+
+
+
+
+
+
 </body>
 </html>
