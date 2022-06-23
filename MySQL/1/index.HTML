@@ -5,9 +5,29 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Site MySQL com HTML</title>
+    <link rel="stylesheet" type="text/css" href="Styles.css">    
     
 </head>
 <body>
+
+<h1>
+Tipos de dados
+  <h2>  
+- DDL = Data definition lenguage <br>
+
+- DML = Data manipulation lenguage <br>
+
+- DQL = Data query lenguage <br>
+
+- DCL = Data control lenguage <br>
+
+- DTL = Data transfer lenguage <br>
+  </h2>
+</h1>
+<hr>
+
+
+
   <h1>
    Tipos de DDL 
    <h2>
@@ -18,7 +38,7 @@
     - Drop database ......; = DDL <br>
    </H2>
   </h1>
-
+<hr>
 
   <h1>
     Tipos de DML
@@ -29,7 +49,7 @@
       - Truncate ......; = DML - Apaga dados <br>
     </h2>
   </h1>
-
+  <hr>
 
   <h1>
     Tipos de DQL
@@ -38,7 +58,7 @@
       - Select * .... = DQL <br>
     </h2>
   </h1>
-
+  <hr>
   
   <h1>
     Outros Comandos
@@ -50,18 +70,365 @@
 - Show create database ......; = ver comandos de criação de DB <br>
     </h2>
   </h1>
-
+  <hr>
   
+<h1>
+  Alteração de estrutura da tabela
+  <h2>
+    - Insert into ......... values = Inserir valores
+(...,........,....);<br>
+<br> 
+- Alter table ...... 
+add column profissao varchar(10); = Adicionar coluna <br>
+<br> 
+- Alter table ...... 
+drop column profissao; = apagar coluna <br>
+<br> 
+- Alter table pessoas
+add column profissao varchar(10) after nome; = adicionar coluna após determinado valor <br>
+<br> 
+- Alter table pessoas
+add column codigo int first; = coluna em primeiro com valor inteiro <br>
+<br>
+- Alter table pessoas 
+add codigo int first; = adicionar coluna sem column <br>
+<br> 
+- Alter table pessoas         = Tipos e constrains 
+modify column profissao varchar(20); = Alterar conteúdo dentro de uma Constrain <br>
+<br> 
+- Alter table pessoas         = Tipos, constrains e nome da coluna
+change column profissao prof varchar(20); = alterar nome de uma constrain <br>
+<br> 
+- Alter table pessoas 
+rename to cuckold; = renomear uma constrain <br>
+
+  </h2>
+</h1>
+<hr>
+
+<h1>
+  Códigos 
+  <h2>
+    Create table If no exists /// if exists ........ ( <br> 
+nome varchar(30) <br>
+nascimento date <br>
+profissao varchar(20)<br>
+) default charset = utf8; <br>
+<hr>
+
+Create table if not exists Example_1 ( <br>
+1 int <br>
+2 varchar(30) <br>
+3 text <br>
+4 date <br>
+5 tinyint <br>
+primary key (ID) <br>
+) default charset = utf8; <br>
+
+  </h2>
+</h1>
+<hr>
+
+<h1>
+  Manipulando Linhas
+  <h2>
+
+    - Update cursos <br>
+    set nome = 'HTML5' <br>
+    where idcurso = '1'; = Alteração de nome com posição de ID <br>
+    <br>
+    
+    - update tabela_cursos <br>
+    set ano = '2015' <br>
+    where idcurso = '4' <br>
+    limit 1; = Alteração de ano com ID e limite de linhas para 1 <br>
+    <br>
+    
+    - update tabela_cursos <br>
+    set ano = '2050', carga = '800' <br>
+    where ano = '2018'; = alterar ano e carga onde o ano fro 2018 <br>
+    <br>
+     
+    - update tabela_cursos <br>
+    set ano = '2018', carga = '0' <br>
+    where ano = '2050'; <br>
+    limit 1; <br>
+    <br>
+    
+    - delete from tabela_cursos <br>
+    where ano = '2050' <br>
+    limit 1; = deletar ano com limite de ano <br>
+    <br>
+  </h2>
+</h1>
+<hr>
+
+<h1>
+  Gerenciando cópias de segurança
+  <h2>
+    - Server  --> Data export // Data import <br>
+    - Dump --> copia do arquivo do DB    
+  </h2>
+</h1>
+<hr>
+
+<h1>
+- Obtendo Dados da Tabelas -- Select ==> Grabber
+  <h2>
+    - Select * from cursos; <br>
+    order by nome; = DESC/ASC (descrescente) <br>
+    <br> 
+    - Select ano, carga, nome from cursos <br>
+    order by ano, nome; <br>
+    <br>
+    - Select nome, carga, totaulas from cursos<br>
+    where carga > 35 or totaulas < 30; <br>
+  </h2>
+</h1>
+<hr>
+
+<h1>
+  Wild Cards <br>
+  Like / Not like / and / or / = seleção personalizada de dados em linhas  
+  <h2>
+    - Select * from cursos <br>
+    where nome like  'A%' = começo do nome com a letra <br>
+    <br>
+    - Select * from cursos <br>
+    where nome like  '%A' = final do nome com a letra <br>
+    <br>
+    - Select * from cursos <br>
+    where nome like  '%A%' = começo e final <br>
+    <br>
+    - Select * from cursos <br>
+    where nome like  'A__%' = começo A + 2 caracteres ou números <br>
+    - Select * from cursos <br>
+    where nome like  'ph%p_' = começo PH fim P e um caratere ou número <br>
+    <br>
+    - Select  * from cursos  <br>
+    where nome not like '%A%';  <br>
+    update cursos set nome = 'PáOO where idcurso = '9'; <br>
+    <br>
+    - Select idcurso, nome from cursos <br>
+    where ano in ('2014', '2016'); <br>
+    <br>
+    - Select nome, ano from cursos <br>
+    where ano between 2014 and 2016 <br>
+    order by ano desc, nome asc; <br>
+    <br>
+    - Select * from cursos <br>
+    where totaulas between '20' and '30' <br>
+    order by nome; <br>
+    <br>
+    - Select nome, descricao from cursos <br>
+    where ano <= '2015' <br>
+    order by nome; <br>
+    <br>
+  </h2>
+</h1>
+<hr>
+
+<h1>
+  Distinguir = pega fatos unicos sem repetição, distintos, diferentes
+  <h2>
+    - Distinct <br>
+    <br>
+    - Select distinct carga from cursos; <br>
+    <br>
+  </h2>
+</h1>
+<hr>
+
+
+<h1>
+  Agrupamento de dados / Group by / Having == select 
+  <h2>
+    - Select carga, count(nome) from cursos = Agrupar cargas por horas <br>
+    group by carga <br>
+    order by cargas; <br>
+    <br>
+    - Select * from cursos where totaulas > 30; = selecionar totaulas>30 <br>
+    <br>
+    - Select carga, count(nome) from cursos where totaulas = 30<br>
+    group by carga;<br>
+    <br>
+    - Select ano, count(ano) from cursos<br>
+    group by ano<br>
+    having count(ano) > 3;<br>
+    <br>
+    
+  
+    - Select carga, count(nome) from cursos where totaulas = 30 <br>
+    group by carga;<br>
+    
+    select * from cursos where totaulas = 30;<br>
+    
+    <br>
+    - Select ano, count(*) from cursos<br>
+    group by ano <br>
+    having count(ano) >= 5<br>
+    order by count(*) desc;<br>
+    <br>
+    - Select ano, count(*) from cursos<br>
+    where totaulas > 30<br>
+    group by ano <br>
+    having ano > 2013<br>
+    order by count(*) desc;<br>
+    <br>
+    - Select carga, count(*) from cursos<br>
+    where ano > 2015<br>
+    group by carga<br>
+    having count(*) >= 5;<br>
+    <br>
+    
+    - Select avg(carga) from cursos;<br>
+    
+    select carga, count(*) from cursos<br>
+    where ano > 2015<br>
+    group by carga having carga > (select avg(carega) from cursos);<br>
+    
+    <br>
+  </h2>
+</h1>
+<hr>
+
+
+<h1>
+  Funções de agregação = Agregar dados selecionados
+  <h2>
+    - count <br>
+    - sum <br>
+    - max <br>
+    - min <br>
+    - avg <br>
+    
+    
+    - Select avg(totaulas) from cursos; <br>
+    - Select max(totaulas) from cursos where ano = '2015'; <br>
+    - Select max(carga) from cursos; <br>
+    - Select count(*) from cursos; <br>
+    </h2>
+</h1>
+<hr>
 
 
 
+<h1>
+  Relacionando as tabelas - Modelo relacional
+  <h2>
+    - Entidade(gafanhotos) = dados(atributos) --> Tlupas(registros) --> alunos
+    <br>
+
+    - CPF = Chave prímaria <br>
+    - Código de barra  = Identificador <br>
+    <br>
+    
+    INNER JOIN --> relação entre entidades<br>
+    <br>
+    left join -> preferência da esqueda <br>
+    right join -> preferência direita<br>
+    
+    
+    - Chave primaria --> entidade --> Relação --> Chave estrangeira --> DER<br>
+    
+    
+    - Atributos compativeis --> Varchar = Varchar / INT = INT / Relação 1 para 1<br>
+    - 1 para muitos = Chave estrangeira no muitos sempre<br>
+    - Muitos para muitos nova entidade = 3 entidades desmembrar relação  - Chave <br>estrangeira na nova entidade<br>
+    
+    
+    - Chave estrangeira = Chave primaria de outro lugar criada em outro 'lugar' <br>
+    
+    
+    - Engine --> mecanismo --> oracle --> caracteristicas de criação de tabela -- > chave estrangeira --> innoDB <br>
+    
+    - Chave Primaria vai sempre para o 1 == Primary key<br>
+    - Chave -> vai do 1(primaria) para o n(foreign) <br>
+    - Constrains sem modelo relacional podem ser apagadas pois não tem conchave <br>com outra table e afeta a consistência dos dados
+    <br>
+    ACID --> resposta do banco de dados --> transação --> INNODB == EXODB != MYsam
+    <br>
+    - Atomicidade = não pode ser dividida em sub tarefas -- fazer toda tarefa ou não fazer<br>
+    
+    - Consistência = DB tem que continuar consistente dps de uma transação
+    <br>
+    - Isolamento = transações isoladas != 2 usuarios transações ao mesmo tempo
+    <br>
+    - Durabilidade = durar o tempo que for necessario -- até você decidir tornar dinâmico
+    <br>
+    
+  </h2>
+</h1>
+<hr>
 
 
+<h1>
+Padrão de criação
+  <h2>
+    CREATE DATABASE CADASTRO <br>
+    DEFAULT CHARACTER SET UTF8 = padrão latino <br>
+    DEFAULT COLLATE UTF8_GENERAL_CI; <br>
+    CRTL + ENTER = RODAR <br>
+  </h2>
+</h1>
+<hr>
 
 
+<h1>
+  Chave primaria = (id) -> id <br>
+  Unique = (Unico) -> nome
+  <h2>
+
+    Chave primaria = (id) -> id <br>
+    Unique = (Unico) -> nome <br>
+    
+    
+    - Fichas = registros = Linhas - Tuplas <br>
+    - Pastas = tabelas = Colunas - Atributos<br>
+    - Armarios = arquivos = DB<br>
+    
+    <br>
+     III - Banco de dados<br>
+      II - Tabelas <br>
+       I - Conjuntos de registros <br>
+         - Campos<br>
+         <br>
+    
+    - Banco de dados --> Gerenciador --> Linguagem de exploração <br>
+    
+    
+    - Collation --> UTF8 <br>
+    
+  </h2>
+</h1>
+<hr>
 
 
-
-
+<h1>
+  Exemplos de Códigos
+  <h2>
+CREATE DATABASE `exemplo`; <br>
+USE `exemplo`;  <br>
+<br>
+Estrutura de tabela para a tabela `usuarios` <br><br>
+CREATE TABLE `usuarios` ( <br>
+  `id` int(8) unsigned NOT NULL AUTO_INCREMENT, <br>
+  `nomedousuario` varchar(16) NOT NULL, <br>
+  `senha` varchar(16) NOT NULL, <br>
+  PRIMARY KEY (`id`) <br>
+);<br><br>
+Dados para a tabela `usuarios`h <br>
+<br>
+INSERT INTO `usuarios` VALUES (1, 'alice','segredo'),(2, 'bob','segredo'); <br><br>
+CREATE TABLE `exemplo`.`amigos` ( <br>
+  `id` INT NOT NULL AUTO_INCREMENT , <br>
+  `nome` VARCHAR(30) NOT NULL , <br>
+  `tel` VARCHAR(11) NULL , <br>
+  PRIMARY KEY (`id `); <br>
+<br>
+<a href="http://localhost/phpmyadmin/index.php?route=/table/structure&&server=1&db=exemplo&table=amigos">Local host php myadmin</a>
+  </h2>
+</h1>
+<hr>
 </body>
 </html>
